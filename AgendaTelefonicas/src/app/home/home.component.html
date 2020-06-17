@@ -1,0 +1,62 @@
+
+<div class="row">
+    <div class="col-md-7 mx-auto mt-5">
+        <div class="card">
+            <div class="card-body">
+                <h3>Agenda Telefónica</h3>
+                <!--form [formGroup]="registerForm" (ngSubmit)="onRegister()"-->   
+                                     
+                    <mat-form-field appearance="legacy">
+                        <mat-label form="id">Id</mat-label>
+                        <input type="id" [(ngModel)]="id" matInput placeholder="Ingrese un Id Personsa">
+                        <mat-hint>Persona</mat-hint>
+                      </mat-form-field>
+                    
+                      <mat-form-field appearance="standard">
+                        <mat-label form="nombre">Nombre</mat-label>
+                        <input type="nombre" [(ngModel)]="nombre" matInput placeholder="Ingrese su nombre completo">
+                        <mat-hint>Nombre</mat-hint>
+                      </mat-form-field> 
+
+                      <mat-form-field appearance="standard">
+                        <mat-label form="telefono">Telefono</mat-label>
+                        <input type="telefono" [(ngModel)]="telefono" matInput placeholder="Ingrese su número de telefono">
+                        <mat-hint>Telefono</mat-hint>
+                      </mat-form-field>
+                      
+                      <mat-form-field class="example-full-width">
+                        <mat-label form="fechaNacimiento">Fecha de nacimiento</mat-label>
+                        <input type="fechaNacimiento"[(ngModel)]="fechaNacimiento" matInput [matDatepicker]="picker">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker touchUi #picker></mat-datepicker>
+                      </mat-form-field>
+
+                      <div class="example-container">
+                        <mat-form-field appearance="fill">
+                          <mat-label form="correo">Ingresa tu correo</mat-label>
+                          <input type="correo" [(ngModel)]="correo" matInput placeholder="ejemplo@example.com" [formControl]="email" required>
+                          <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+                        </mat-form-field>
+                      </div>
+                      <button type="submit"(click)="CreateRecord()" mat-raised-button color="primary">Enviar</button>
+                                  
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <mat-car class="post-card">
+            <mat-card-content>
+                <mat-card-title>
+                    
+                </mat-card-title>
+            </mat-card-content>
+        </mat-car>
+    </div>
+</div> 
+<!--div class="container">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Agenda Telefonica</mat-card-title>
+        </mat-card-header>
+    </mat-card>
+</div-->

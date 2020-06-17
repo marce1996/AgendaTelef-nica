@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "agenda-angular2020": {
+      "hosting": {
+        "AgendaTelefonicas": [
+          "agenda-angular2020"
+        ]
+      }
+    }
+  }
+}
