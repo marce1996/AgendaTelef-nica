@@ -1,22 +1,31 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild} from '@angular/core';
 import {FormControl, Validators, FormGroup} from '@angular/forms';
 import {CrudService} from '../service/crud.service';
-import { from } from 'rxjs';
+import { from, Observable } from 'rxjs';
+import { AngularFirestore } from '@angular/fire/firestore';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatSort} from '@angular/material/sort';
+import {MatTableDataSource} from '@angular/material/table';
+import 'firebase/firestore';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, AfterViewInit {
 
   id: string;
   nombre: string;
   telefono: string;
-  fechaNacimiento: string;
+  fechaNacimiento: number;
   correo: string;
 
-  constructor(public crudservice:CrudService){}
+  
+  items: Observable<any[]>;
+  constructor(public crudservice:CrudService, firestoreConfig:AngularFirestore){
+    this.items = firestoreConfig.collection('Agenda').valueChanges();
+  }
 
   CreateRecord()
   {
@@ -32,7 +41,7 @@ export class HomeComponent implements OnInit {
     this.id = "";
     this.nombre = "";
     this.telefono = "";
-    this.fechaNacimiento = "";
+    this.fechaNacimiento = undefined;
     this.correo = "";
     console.log(res);
   }).catch(error =>{
@@ -58,11 +67,19 @@ export class HomeComponent implements OnInit {
 
     return this.email.hasError('email') ? 'Not a valid email' : '';
   }
+
+  displayedColumns: string[] = ['Nombre', 'Telefono', 'Fecha', 'Correo'];
+  dataSource = new MatTableDataSource();
+
+  @ViewChild(MatPaginator,{static:true}) paginator: MatPaginator;
+  @ViewChild(MatSort,{static:true}) sort: MatSort;
   
-
   ngOnInit(): void {
-  }
+    }
+  ngAfterViewInit()
+  {
 
+  }
   /*onRegister(){
     console.log('Form', this.registerForm.value);
   }*/

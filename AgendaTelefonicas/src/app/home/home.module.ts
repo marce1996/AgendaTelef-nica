@@ -7,6 +7,7 @@ import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {environment} from '../../environments/environment';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {FormsModule} from '@angular/forms';
+import {AngularFireAnalyticsModule} from '@angular/fire/analytics';
 
 import {CrudService} from '../../app/service/crud.service';
 
@@ -99,7 +100,8 @@ const myModule = [A11yModule,
   MatTooltipModule,
   MatTreeModule,
   PortalModule,
-  ScrollingModule,];
+  ScrollingModule,
+  ];
 
 @NgModule({
   declarations: [HomeComponent],
@@ -111,7 +113,8 @@ const myModule = [A11yModule,
     myModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    AngularFireAnalyticsModule
   ],
   providers: [CrudService],
   exports:[myModule]

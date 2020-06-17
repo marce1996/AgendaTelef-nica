@@ -1,12 +1,12 @@
 
 <div class="row">
-    <div class="col-md-7 mx-auto mt-5">
+    <div class="col-md-6 mx-auto mt-5">
         <div class="card">
             <div class="card-body">
                 <h3>Agenda Telefónica</h3>
-                <!--form [formGroup]="registerForm" (ngSubmit)="onRegister()"-->   
-                                     
-                    <mat-form-field appearance="legacy">
+                <hr color="blue" size=1 width="60%">
+               
+                     <mat-form-field appearance="legacy">
                         <mat-label form="id">Id</mat-label>
                         <input type="id" [(ngModel)]="id" matInput placeholder="Ingrese un Id Personsa">
                         <mat-hint>Persona</mat-hint>
@@ -18,41 +18,56 @@
                         <mat-hint>Nombre</mat-hint>
                       </mat-form-field> 
 
-                      <mat-form-field appearance="standard">
-                        <mat-label form="telefono">Telefono</mat-label>
-                        <input type="telefono" [(ngModel)]="telefono" matInput placeholder="Ingrese su número de telefono">
-                        <mat-hint>Telefono</mat-hint>
+                      <mat-form-field class="example-full-width">
+                        <mat-label>Telephone</mat-label>
+                        <span matPrefix>+1 &nbsp;</span>
+                        <input type="tel" [(ngModel)]="telefono" matInput placeholder="555-555-1234">
+                        <mat-icon matSuffix>mode_edit</mat-icon>
                       </mat-form-field>
                       
                       <mat-form-field class="example-full-width">
                         <mat-label form="fechaNacimiento">Fecha de nacimiento</mat-label>
-                        <input type="fechaNacimiento"[(ngModel)]="fechaNacimiento" matInput [matDatepicker]="picker">
-                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                        <mat-datepicker touchUi #picker></mat-datepicker>
-                      </mat-form-field>
+                        <input type="fechaNacimiento" [(ngModel)]="fechaNacimiento " matInput [matDatepicker]="miDatepicker">
+                        <mat-datepicker-toggle matSuffix [for]="miDatepicker"></mat-datepicker-toggle>
+                        <mat-datepicker touchUi #miDatepicker></mat-datepicker>
+                      </mat-form-field>                 
 
                       <div class="example-container">
-                        <mat-form-field appearance="fill">
+                        <mat-form-field appearance="fill" class="mat">
                           <mat-label form="correo">Ingresa tu correo</mat-label>
-                          <input type="correo" [(ngModel)]="correo" matInput placeholder="ejemplo@example.com" [formControl]="email" required>
+                          <mat-icon style="margin-left: -19vh;"  matSuffix>mode_email</mat-icon>
+                          <input type="correo" [(ngModel)]="correo" matInput placeholder="ejemplo@example.com" [formControl]="email" required>                          
                           <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
                         </mat-form-field>
                       </div>
-                      <button type="submit"(click)="CreateRecord()" mat-raised-button color="primary">Enviar</button>
-                                  
+                      <div class="contenedor-boton">
+                      <button type="submit"(click)="CreateRecord()" mat-raised-button color="primary">Guardar</button>
+                    </div>
             </div>
         </div>
     </div>
-    <div class="container">
-        <mat-car class="post-card">
-            <mat-card-content>
-                <mat-card-title>
-                    
-                </mat-card-title>
-            </mat-card-content>
-        </mat-car>
-    </div>
+    
 </div> 
+
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Nombre</th>
+        <th scope="col">Telefono</th>
+        <th scope="col">Correo</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of items | async">
+       
+        <td>{{item.nombre}}</td>
+        <td>{{item.telefono}}</td>
+        <td>{{item.correo}}</td>
+      </tr>
+      
+    </tbody>
+  </table>
 <!--div class="container">
     <mat-card>
         <mat-card-header>

@@ -6,3 +6,27 @@ mat-form-field{
     padding-left: 20px;
     padding-top: 20px;
 }
+
+.card-body
+{
+    text-align: center;
+}
+
+table{
+    margin-top: 50px;
+}
+
+.contenedor-boton{
+    text-align: center;
+}
+
+.example-container{
+    width: 59%;
+    text-align: center;
+}
+
+.mat
+{
+    margin-left: 30%;
+    width: 105%;
+}
